@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
@@ -28,9 +29,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Category>> Create(Category category)
+    public async Task<ActionResult<Category>> Create(CategoryDto category)
     {
-        _context.Category.Add(category);
+
+        var obj = Category.Create(category);
+        _context.Category.Add(obj);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new { id = category.Id }, category);
     }

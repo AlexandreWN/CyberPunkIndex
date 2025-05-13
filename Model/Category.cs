@@ -1,4 +1,6 @@
-﻿namespace Model;
+﻿using Dtos;
+
+namespace Model;
 
 public class Category
 {
@@ -8,5 +10,14 @@ public class Category
     public Category()
     {
 
+    }
+
+    public static Category Create(CategoryDto dto)
+    {
+        return new Category()
+        {
+            Id = dto.Id,
+            Name = dto.Name,
+        };
     }
 }
